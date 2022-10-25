@@ -1,0 +1,18 @@
+body {
+  background-color: antiquewhite !important;
+}
+.container-fluid {
+  height: 22vh;
+  background-color: #f2eee2;
+  border-bottom: 1px solid black;
+}
+.container {
+  border: 1px solid gray;
+  padding: 1rem;
+  background-color: rgba(255, 228, 196, 0.781);
+  box-sizing: border-box;
+}
+
+.img-bg {
+  background-color: white;
+}

@@ -4,14 +4,14 @@ import designSvg from "../../assets/design.svg";
 
 const Footer = () => {
   return (
-    <div className="footer-div">
+    <div className="footer-div mx-auto">
       <a
-        href="https://www.clarusway.com"
+        href="https://my-portfolio-schwayzer.netlify.app/"
         target="_blank"
         rel="noopener noreferrer"
         style={{ textDecoration: "none" }}
       >
-        <code className="brand">{"<Clarusway/> "}</code>
+        <code className="brand">Schwayzer</code>
       </a>
       <img
         src={designSvg}
