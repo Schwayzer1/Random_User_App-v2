@@ -1,5 +1,4 @@
 import React, { useEffect, useState } from "react";
-import Design from "../../assets/design.svg";
 import man from "../../assets/man.svg";
 import woman from "../../assets/woman.svg";
 import email from "../../assets/mail.svg";
