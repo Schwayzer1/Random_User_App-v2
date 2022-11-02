@@ -11,6 +11,10 @@ import padlock from "../../assets/padlock.svg";
 import "./User.css";
 import axios from "axios";
 
+const initialTable = [];
+let personData;
+let name;
+let person;
 const User = () => {
   const [userInfo, setUserInfo] = useState([]);
   const [loading, setLoading] = useState(false);
@@ -18,13 +22,14 @@ const User = () => {
     text1: "",
     text2: "",
   });
+  const [add, setAdd] = useState(initialTable);
 
   const getUser = async () => {
     const url = "https://randomuser.me/api/";
     setLoading(true);
     try {
       const response = await axios(url);
-      const person = response.data.results[0];
+      person = response.data.results[0];
       const {
         email,
         gender,
@@ -35,8 +40,8 @@ const User = () => {
         location: { country },
         login: { password },
       } = person;
-      const name = `${first} ${last}`;
-      const personData = {
+      name = `${first} ${last}`;
+      personData = {
         email,
         gender,
         name,
@@ -65,6 +70,18 @@ const User = () => {
   const hoverHandler = (e) => {
     const { name } = e.target;
     setHoverData({ text1: `my ${name} is `, text2: userInfo[name] });
+  };
+  const handleAdd = () => {
+    !add.some((item) => item.firstname === personData.name)
+      ? setAdd([
+          ...add,
+          {
+            firstname: personData.name,
+            email: personData.email,
+            phone: personData.phone,
+          },
+        ])
+      : alert("this user has already been added");
   };
 
   return (
@@ -130,6 +147,43 @@ const User = () => {
           className="rounded-circle border border-dark p-1 btn mx-4 bg-white"
           alt=""
         />
+      </div>
+      <div className="btns mt-4 d-flex justify-content-center gap-4">
+        <button
+          disabled={loading}
+          className="btn btn-success"
+          onClick={() => getUser()}
+        >
+          {loading ? "Loading" : "New User"}
+        </button>
+        <button onClick={handleAdd} className="btn btn-warning">
+          Add User
+        </button>
+      </div>
+      <div className="table mt-4">
+        {!!add.length && (
+          <table className="table">
+            <thead>
+              <tr>
+                <th>Firstname</th>
+                <th>Email</th>
+                <th>Phone</th>
+              </tr>
+            </thead>
+
+            <tbody>
+              {add.map((item, index) => {
+                return (
+                  <tr key={index}>
+                    <td>{item.firstname}</td>
+                    <td>{item.email}</td>
+                    <td>+{item.phone}</td>
+                  </tr>
+                );
+              })}
+            </tbody>
+          </table>
+        )}
       </div>
     </div>
   );

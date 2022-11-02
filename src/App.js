@@ -10,8 +10,8 @@ function App() {
       <div className="nav container-fluid d-flex justify-content-center">
         <img
           src={schwayzer}
-          width="250px"
-          height="180px"
+          width="200px"
+          height="120px"
           alt=""
           className="schwayzer"
         />
